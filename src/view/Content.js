@@ -1,3 +1,4 @@
+import { Task } from "../models/Task";
 import { DoneZoElements } from "../utils/DOM";
 
 
@@ -81,10 +82,17 @@ export function contentDisplayer() {
         taskElement.appendChild(taskFooter);
 
         content.appendChild(taskElement);
+
     }
 
-    function deleteTask(id) {
-
+    function deleteTask(project, id) {
+        const taskElement = document.querySelector(`[data-task-id="${id}"]`);
+        taskElement.remove();
+        for (let i = 0; i < project.tasks.length; i++) {
+            if (project.tasks[i].id === id) {
+                project.tasks.splice(i, 1);
+            }
+        }
     }
 
     function editTask(id) {
@@ -111,6 +119,13 @@ export function contentDisplayer() {
         console.log(`Task ${taskId} marked as ${!isDone ? 'done' : 'not done'}`);
     }
 
+    
+    function deleteTasks(project) {
+        let content = document.querySelector('#content');
+        content.innerHTML = '';
+        project.tasks = [];
+    }
 
-    return { addTask, deleteTask, editTask, toggleTaskDone };
+
+    return { addTask, deleteTask, deleteTasks, editTask, toggleTaskDone };
 }

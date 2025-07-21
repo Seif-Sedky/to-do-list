@@ -72,8 +72,8 @@
 }
 
 .task-checkbox.checked {
-    background: linear-gradient(135deg, #ec4899, #8b5cf6);
-    border-color: #ec4899;
+    background: linear-gradient(135deg, #ff7ebf, #ebe3ff);
+    border-color: #e1fff3;
     color: white;
 }
 
@@ -85,9 +85,8 @@
 
 .task-name {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 800;
     color: #1f2937;
-    margin: 0;
     flex-grow: 1;
 }
 
@@ -104,7 +103,7 @@
 }
 
 .task-due-date {
-    color: #374151;
+    color: #590064;
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -119,24 +118,24 @@
 }
 
 .importance-high {
-    background: #fef2f2;
-    color: #dc2626;
+    background: #ffcce6;
+    color: #ff0000;
     border: 1px solid #fecaca;
 }
 
 
 .importance-low {
-    background: #f0f9ff;
-    color: #0284c7;
-    border: 1px solid #bae6fd;
+    background: #e1e0ff;
+    color:  #0400ff;
+    border: 1px solid #ffffff;
 }
 
 .task-edit-btn {
     background: none;
     border: 1px solid #d1d5db;
     border-radius: 6px;
-    padding: 6px 12px;
     color: #6b7280;
+    padding: 6px 12px;
     cursor: pointer;
     font-size: 12px;
     transition: all 0.2s ease;
@@ -163,6 +162,6 @@
 
 .task-delete-btn:hover {
     border-color: #dc2626;
-    color: #dc2626;
-    background: #fef2f2;
+    color: #ff0000;
+    background: #ffbaba;
 }

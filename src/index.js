@@ -28,6 +28,7 @@ function start() {
 
     function addSubmitEvent(objects, submitBtn, input, overlay) {
 
+
         submitBtn.addEventListener('click', () => {
 
             if (input.value) {
@@ -138,9 +139,17 @@ function start() {
     }
 
     function deleteProject(deleteBtn) {
+
         //delete from array
         for (let i = 0; i < projects.length; i++) {
             if (projects[i].id === deleteBtn.parentElement.dataset.id) {
+                //delete tasks of project
+                if (deleteBtn.parentElement.classList.contains('selected')) {
+                    contentDispl.deleteTasks(projects[i]);
+                }
+                else {
+                    projects[i].tasks = [];
+                }
                 projects.splice(i, 1);
                 console.log("Deleted from array");
             }
