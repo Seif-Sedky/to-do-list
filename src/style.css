@@ -5,7 +5,7 @@ html {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --header-height: 10vh;
+    --header-height: 8vh;
 }
 
 p {
@@ -14,23 +14,26 @@ p {
 
 
 /* Header Sttyling */
-
 #header {
     width: 100%;
     height: var(--header-height);
     background: linear-gradient(0.25turn, #ffffff, #ce86c8, #ff00ff);
+    box-shadow: 0 4px 15px rgba(124, 0, 114, 0.3);
+
+    position: relative;
+    z-index: 100;
 }
 
 .header-content {
-    padding-top: 10px;
+    padding-top: 15px;
     margin-left: 3vw;
     display: flex;
     align-items: center;
 }
 
 #website-logo {
-    height: 7vh;
-    width: 5vw;
+    height: 5vh;
+    width: 3.5vw;
     filter: hue-rotate(180deg);
 }
 
@@ -50,13 +53,16 @@ p {
 
 /* Sidebar Styling */
 #sidebar {
+    position: fixed;
+    z-index: 50;
+
     width: 280px;
     height: calc(100vh - 10vh);
     padding: 20px 0;
 
     background: linear-gradient(180deg, rgba(255, 255, 255), rgba(235, 235, 235));
     border-right: 2px solid rgba(206, 134, 200, 0.3);
-    box-shadow: 2px 0 15px rgba(124, 0, 114, 0.1);
+    box-shadow: 2px 0 15px rgba(124, 0, 114, 0.3);
 
     overflow-y: auto;
 }
