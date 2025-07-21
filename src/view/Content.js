@@ -62,8 +62,14 @@ export function contentDisplayer() {
         taskEditBtn.textContent = 'Edit';
         taskEditBtn.addEventListener('click', () => editTask(task.id));
 
+        const taskDelBtn = document.createElement('button');
+        taskDelBtn.className = 'task-delete-btn';
+        taskDelBtn.textContent = 'Delete';
+        taskDelBtn.addEventListener('click', () => deleteTask(task.id));
+
         taskActions.appendChild(taskImportance);
         taskActions.appendChild(taskEditBtn);
+        taskActions.appendChild(taskDelBtn);
 
         // Assemble footer
         taskFooter.appendChild(taskInfo);
@@ -77,7 +83,7 @@ export function contentDisplayer() {
         content.appendChild(taskElement);
     }
 
-    function removeTask(id) {
+    function deleteTask(id) {
 
     }
 
@@ -106,5 +112,5 @@ export function contentDisplayer() {
     }
 
 
-    return { addTask, removeTask, editTask, toggleTaskDone };
+    return { addTask, deleteTask, editTask, toggleTaskDone };
 }

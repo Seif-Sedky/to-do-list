@@ -29,6 +29,7 @@
     background: white;
     border-radius: 12px;
     padding: 16px;
+    margin-top: 20px;
     margin-bottom: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-left: 4px solid #e5e7eb;
@@ -143,7 +144,25 @@
 }
 
 .task-edit-btn:hover {
-    border-color: #ec4899;
-    color: #ec4899;
-    background: #fdf2f8;
+    border-color: #7bfff4;
+    color: #00d9ff;
+    background: #c1fbff;
+}
+
+.task-delete-btn {
+    background: none;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: #6b7280;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    margin-left: 12px;
+}
+
+.task-delete-btn:hover {
+    border-color: #dc2626;
+    color: #dc2626;
+    background: #fef2f2;
 }

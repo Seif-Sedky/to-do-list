@@ -6,6 +6,8 @@ import './view/content.css';
 import { createProjectPopup, createTaskPopup } from './view/Popup.js';
 import { DoneZoElements } from './utils/DOM.js';
 import { Project } from './models/Project.js'
+import { Task } from './models/Task.js'
+
 import { sidebarDisplayer } from './view/Sidebar.js';
 
 let projects = [];
@@ -69,7 +71,17 @@ function start() {
 
     }
 
+    function getProj(id) {
+        for (let i = 0; i < projects.length; i++) {
+            if (projects[i].id === id) {
+                return projects[i];
+            }
+        }
+    }
+
     function displayContent(id) {
+        //get project from backend
+        let project = getProj(id);
 
 
         // Clear existing content
@@ -81,17 +93,12 @@ function start() {
         const addButton = document.createElement('button');
         addButton.className = 'add-task-btn';
         addButton.textContent = '+';
-        addButton.addEventListener('click', createTaskPopup);
+        addButton.addEventListener('click', () => {
+            addTaskEvent(createTaskPopup(), project);//create task popup will return the objects of the popup
+        });
         content.appendChild(addButton);
 
-        //get project from backend
-        let project;
-        for (let i = 0; i < projects.length; i++) {
-            if (projects[i].id === id) {
-                project = projects[i];
-                break;
-            }
-        }
+
 
         // Display all tasks in the project
         if (project && project.tasks && project.tasks.length > 0) {
@@ -100,6 +107,34 @@ function start() {
             });
         }
 
+    }
+
+    function addTaskEvent(objects, project) {
+        objects.submitBtn.addEventListener('click', () => {
+            // Get values from the input fields
+            const taskName = objects.nameInput.value.trim();
+            const taskDescription = objects.descInput.value.trim();
+            const taskDueDate = objects.dateInput.value;
+            const isImportant = objects.checkboxContainer.querySelector('.modal-checkbox').checked;
+
+            // Validate required fields
+            if (taskName && taskDueDate) {
+                // Determine importance level
+                const importance = isImportant ? 'High' : 'Low';
+
+                // Create new Task object using the constructor
+                const newTask = new Task(taskName, taskDescription, taskDueDate, importance);
+
+                // Add the task to the project's tasks array
+                project.tasks.push(newTask);
+
+                // Display the new task in the UI
+                contentDispl.addTask(newTask);
+
+                // Close the modal by removing the overlay
+                objects.overlay.remove();
+            }
+        });
     }
 
     function deleteProject(deleteBtn) {

@@ -197,6 +197,12 @@ p {
     background: linear-gradient(135deg, #6d1818, #f87171);
 }
 
+
+#content{
+    margin-left: 300px;
+    margin-right: 50px;
+}
+
 /* Dynamic components styling */
 
 /* Dynamic projects */
