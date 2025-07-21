@@ -1,0 +1,4 @@
+.project-entry.selected {
+    transition: transform 0.2s ease, background 0.3s ease;
+    transform: scale(1.1);
+}

@@ -5,12 +5,11 @@ import { Project } from './models/Project.js'
 import { sidebarDisplayer } from './view/Sidebar.js';
 
 let projects = [];
+const sidebarDispl = sidebarDisplayer();
+const elements = new DoneZoElements();
+
 
 function start() {
-
-
-    const elements = new DoneZoElements();
-    let sidebarDispl = sidebarDisplayer();
 
     elements.addProjectButton.addEventListener('click', () => {
 
@@ -61,4 +60,7 @@ function start() {
         sidebarDispl.removeProject(deleteBtn.parentElement.dataset.id);
     }
 }
+
+
+
 start();
