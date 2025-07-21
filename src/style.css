@@ -17,7 +17,7 @@ p {
 #header {
     width: 100%;
     height: var(--header-height);
-    background: linear-gradient(0.25turn, #ffffff, #ce86c8, #ff00ff);
+    background: linear-gradient(0.25turn, #ffedfb, #ffbdf9, #ff86c9);
     box-shadow: 0 4px 15px rgba(124, 0, 114, 0.3);
 
     position: relative;
