@@ -46,7 +46,7 @@ export function contentDisplayer() {
 
         const taskDueDate = document.createElement('span');
         taskDueDate.className = 'task-due-date';
-        taskDueDate.textContent = `📅 Due: ${new Date(task.dueDate).toLocaleDateString()}`;
+        taskDueDate.textContent = `📅 Due: ${new Date(task.due).toLocaleDateString()}`;
 
         taskInfo.appendChild(taskDueDate);
 
@@ -119,7 +119,7 @@ export function contentDisplayer() {
         console.log(`Task ${taskId} marked as ${!isDone ? 'done' : 'not done'}`);
     }
 
-    
+
     function deleteTasks(project) {
         let content = document.querySelector('#content');
         content.innerHTML = '';
