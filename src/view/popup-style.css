@@ -1,0 +1,78 @@
+.donezo-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.donezo-modal {
+    background: linear-gradient(to right, #fce4ec, #f8bbd0);
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    box-shadow: 0 0 20px #f06292;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 1.4em;
+    color: #880e4f;
+    text-align: center;
+}
+
+.modal-input,
+.modal-textarea,
+.modal-date {
+    padding: 8px;
+    font-size: 1em;
+    border-radius: 8px;
+    border: 1px solid #f48fb1;
+    background-color: #fff0f6;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal-textarea {
+    height: 60px;
+    resize: none;
+}
+
+.modal-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ad1457;
+    font-weight: bold;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.modal-ok {
+    background-color: #f06292;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.modal-cancel {
+    background-color: #eee;
+    color: #333;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
