@@ -16,17 +16,25 @@ export function createProjectPopup() {
     input.placeholder = 'Project Name';
     input.classList.add('modal-input');
 
+
+
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('modal-buttons');
 
     const okBtn = document.createElement('button');
     okBtn.textContent = 'OK';
     okBtn.classList.add('modal-ok');
+    okBtn.classList.add('popup-button');
+
 
     const cancelBtn = document.createElement('button');
     cancelBtn.textContent = 'Cancel';
     cancelBtn.classList.add('modal-cancel');
+    cancelBtn.classList.add('popup-button');
+
     cancelBtn.addEventListener('click', () => overlay.remove());
+
+    //add okay button event listener
 
     buttonContainer.append(okBtn, cancelBtn);
     modal.append(title, input, buttonContainer);
