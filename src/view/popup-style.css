@@ -1,3 +1,17 @@
+input::placeholder,
+textarea::placeholder {
+    color: #919191;
+    opacity: 0.5;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+button {
+    outline: none;
+    border: none;
+}
+
 .donezo-overlay {
     position: fixed;
     inset: 0;
@@ -11,19 +25,19 @@
 
 .donezo-modal {
     background: linear-gradient(to right, #fce4ec, #f8bbd0);
-    padding: 20px;
-    border-radius: 15px;
-    width: 300px;
-    box-shadow: 0 0 20px #f06292;
+    padding: 34px;
+    border-radius: 22px;
+    width: 440px;
+    box-shadow: 0 0 30px #f06292;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 22px;
     font-family: 'Segoe UI', sans-serif;
 }
 
 .modal-title {
     margin: 0;
-    font-size: 1.4em;
+    font-size: 2em;
     color: #880e4f;
     text-align: center;
 }
@@ -31,49 +45,59 @@
 .modal-input,
 .modal-textarea,
 .modal-date {
-    padding: 8px;
-    font-size: 1em;
-    border-radius: 8px;
+    padding: 16px;
+    font-size: 1.3em;
+    font-weight: 700;
+    border-radius: 12px;
     border: 1px solid #f48fb1;
     background-color: #fff0f6;
     width: 100%;
     box-sizing: border-box;
 }
 
-.modal-input:focus {
+input:focus,
+textarea:focus {
     outline: none;
     box-shadow: none;
     border-color: #ff0055;
 }
 
-
 .modal-textarea {
-    height: 60px;
+    height: 100px;
     resize: none;
 }
 
 .modal-checkbox-label {
     display: flex;
     align-items: center;
-    gap: 8px;
-    color: #ad1457;
+    gap: 10px;
     font-weight: bold;
+    font-size: 1.3em;
+    color: #ad1457;
+    user-select: none;
+    cursor: pointer;
+}
+
+.modal-checkbox {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
 }
 
 .modal-buttons {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
+    gap: 14px;
     transition: all 0.3s ease;
-
 }
 
 .popup-button {
-    padding: 8px 14px;
-    border-radius: 8px;
+    padding: 14px 24px;
+    border-radius: 12px;
     cursor: pointer;
     border: none;
     font-weight: 900;
+    font-size: 1.1em;
 }
 
 .popup-button:hover {
@@ -82,12 +106,9 @@
     transition: all 0.15s ease;
 }
 
-
-
 .modal-ok {
     background-color: #f06292;
     color: white;
-
 }
 
 .modal-cancel {

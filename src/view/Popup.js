@@ -85,10 +85,14 @@ export function createTaskPopup() {
     const okBtn = document.createElement('button');
     okBtn.textContent = 'OK';
     okBtn.classList.add('modal-ok');
+    okBtn.classList.add('popup-button');
+
 
     const cancelBtn = document.createElement('button');
     cancelBtn.textContent = 'Cancel';
     cancelBtn.classList.add('modal-cancel');
+    cancelBtn.classList.add('popup-button');
+
     cancelBtn.addEventListener('click', () => overlay.remove());
 
     buttonContainer.append(okBtn, cancelBtn);
