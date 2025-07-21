@@ -1,4 +1,4 @@
-class Task {
+export class Task {
     constructor(name, description, due, importance) {
         // voulantarily choose not to be private
         this.id = crypto.randomUUID();

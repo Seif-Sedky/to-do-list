@@ -1,4 +1,4 @@
-class DoneZoElements {
+export class DoneZoElements {
     constructor() {
         // Header Elements
         this.header = document.querySelector('#header');

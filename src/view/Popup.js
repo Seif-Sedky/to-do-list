@@ -1,4 +1,8 @@
 import "./popup-style.css";
+import { Task } from './../models/Task';
+import { Project } from './../models/Project';
+
+
 
 export function createProjectPopup() {
     const overlay = document.createElement('div');
@@ -15,16 +19,15 @@ export function createProjectPopup() {
     input.type = 'text';
     input.placeholder = 'Project Name';
     input.classList.add('modal-input');
-
-
+    input.required = true;
 
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('modal-buttons');
 
-    const okBtn = document.createElement('button');
-    okBtn.textContent = 'OK';
-    okBtn.classList.add('modal-ok');
-    okBtn.classList.add('popup-button');
+    const submitBtn = document.createElement('button');
+    submitBtn.textContent = 'OK';
+    submitBtn.classList.add('modal-ok');
+    submitBtn.classList.add('popup-button');
 
 
     const cancelBtn = document.createElement('button');
@@ -34,12 +37,12 @@ export function createProjectPopup() {
 
     cancelBtn.addEventListener('click', () => overlay.remove());
 
-    //add okay button event listener
-
-    buttonContainer.append(okBtn, cancelBtn);
+    buttonContainer.append(submitBtn, cancelBtn);
     modal.append(title, input, buttonContainer);
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
+
+    return submitBtn;
 }
 
 
@@ -82,10 +85,11 @@ export function createTaskPopup() {
     const buttonContainer = document.createElement('div');
     buttonContainer.classList.add('modal-buttons');
 
-    const okBtn = document.createElement('button');
-    okBtn.textContent = 'OK';
-    okBtn.classList.add('modal-ok');
-    okBtn.classList.add('popup-button');
+    const submitBtn = document.createElement('button');
+    submitBtn.textContent = 'OK';
+    submitBtn.classList.add('modal-ok');
+    submitBtn.classList.add('popup-button');
+
 
 
     const cancelBtn = document.createElement('button');
@@ -95,9 +99,11 @@ export function createTaskPopup() {
 
     cancelBtn.addEventListener('click', () => overlay.remove());
 
-    buttonContainer.append(okBtn, cancelBtn);
+    buttonContainer.append(submitBtn, cancelBtn);
 
     modal.append(title, nameInput, descInput, dateInput, checkboxContainer, buttonContainer);
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
+
+    return submitBtn;
 }
