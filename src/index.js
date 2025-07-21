@@ -10,13 +10,14 @@ function start() {
 
 
     const elements = new DoneZoElements();
+    let sidebarDispl = sidebarDisplayer();
+
     elements.addProjectButton.addEventListener('click', () => {
 
         let objects = createProjectPopup();
         let submitBtn = objects.submitBtn;
         let input = objects.input;
-        let overlay=objects.overlay;
-
+        let overlay = objects.overlay;
 
 
         submitBtn.addEventListener('click', () => {
@@ -31,7 +32,7 @@ function start() {
 
 
                 //display new project and get delete button
-                let deleteBtn = sidebarDisplayer().addProject(project.id, project.name);
+                let deleteBtn = sidebarDispl.addProject(project.id, project.name);
                 deleteBtn.addEventListener('click', () => {
                     deleteProject(deleteBtn);
                 });
@@ -44,9 +45,18 @@ function start() {
         });
 
     });
-}
+    function deleteProject(deleteBtn) {
+        //delete from array
+        for (let i = 0; i < projects.length; i++) {
+            if (projects[i].id === deleteBtn.parentElement.dataset.id) {
+                projects.splice(i, 1);
+                console.log("Deleted from array");
+            }
+        }
+        //delete from localStorage
 
-function deleteProject(deleteBtn) {
-
+        //delete from front end
+        sidebarDispl.removeProject(deleteBtn.parentElement.dataset.id);
+    }
 }
 start();

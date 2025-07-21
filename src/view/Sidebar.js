@@ -32,7 +32,15 @@ export function sidebarDisplayer() {
 
 
     function removeProject(id) {
-        //search in projects for id 
+        let projects = elements.projects;
+        const projectElements = projects.children;
+        for (let i = 1; i < projectElements.length; i++) {
+            const project = projectElements[i];
+            if (project.dataset.id === id) {
+                project.remove();
+                break; // Stop once it's found and removed
+            }
+        }
     }
-    return {addProject,removeProject};
+    return { addProject, removeProject };
 }
