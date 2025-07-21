@@ -42,7 +42,7 @@ export function createProjectPopup() {
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
-    return { submitBtn, input,overlay };
+    return { submitBtn,input,overlay };
 }
 
 
@@ -105,5 +105,5 @@ export function createTaskPopup() {
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
-    return { submitBtn, input };
+    return { submitBtn, nameInput, descInput, dateInput, checkboxContainer, buttonContainer };
 }

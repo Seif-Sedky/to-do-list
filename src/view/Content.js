@@ -4,21 +4,107 @@ import { DoneZoElements } from "../utils/DOM";
 export function contentDisplayer() {
     let elements = new DoneZoElements();
 
-    function addTask() {
+    function addTask(task) {
+        let content = elements.content;
+
+        // Create main task container
+        const taskElement = document.createElement('div');
+        taskElement.className = `task-container ${task.done ? 'done' : ''}`;
+        taskElement.setAttribute('data-task-id', task.id);
+
+        // Create task header
+        const taskHeader = document.createElement('div');
+        taskHeader.className = 'task-header';
+
+        // Create checkbox
+        const taskCheckbox = document.createElement('div');
+        taskCheckbox.className = `task-checkbox ${task.done ? 'checked' : ''}`;
+        taskCheckbox.addEventListener('click', () => toggleTaskDone(task.id));
+
+        // Create task name
+        const taskName = document.createElement('h3');
+        taskName.className = 'task-name';
+        taskName.textContent = task.name;
+
+        // Assemble header
+        taskHeader.appendChild(taskCheckbox);
+        taskHeader.appendChild(taskName);
+
+        // Create task description
+        const taskDescription = document.createElement('div');
+        taskDescription.className = 'task-description';
+        taskDescription.textContent = task.description;
+
+        // Create task footer
+        const taskFooter = document.createElement('div');
+        taskFooter.className = 'task-footer';
+
+        // Create task info section
+        const taskInfo = document.createElement('div');
+        taskInfo.className = 'task-info';
+
+        const taskDueDate = document.createElement('span');
+        taskDueDate.className = 'task-due-date';
+        taskDueDate.textContent = `📅 Due: ${new Date(task.dueDate).toLocaleDateString()}`;
+
+        taskInfo.appendChild(taskDueDate);
+
+        // Create task actions section
+        const taskActions = document.createElement('div');
+        taskActions.className = 'task-actions';
+
+        const taskImportance = document.createElement('span');
+        taskImportance.className = `task-importance importance-${task.importance.toLowerCase()}`;
+        taskImportance.textContent = task.importance;
+
+        const taskEditBtn = document.createElement('button');
+        taskEditBtn.className = 'task-edit-btn';
+        taskEditBtn.textContent = 'Edit';
+        taskEditBtn.addEventListener('click', () => editTask(task.id));
+
+        taskActions.appendChild(taskImportance);
+        taskActions.appendChild(taskEditBtn);
+
+        // Assemble footer
+        taskFooter.appendChild(taskInfo);
+        taskFooter.appendChild(taskActions);
+
+        // Assemble complete task element
+        taskElement.appendChild(taskHeader);
+        taskElement.appendChild(taskDescription);
+        taskElement.appendChild(taskFooter);
+
+        content.appendChild(taskElement);
+    }
+
+    function removeTask(id) {
 
     }
 
-    function removeTask() {
+    function editTask(id) {
 
     }
 
-    function editTask() {
+    function toggleTaskDone(taskId) {
+        const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
+        const checkbox = taskElement.querySelector('.task-checkbox');
 
+        // Toggle the done state visually
+        const isDone = taskElement.classList.contains('done');
+
+        if (isDone) {
+            taskElement.classList.remove('done');
+            checkbox.classList.remove('checked');
+        } else {
+            taskElement.classList.add('done');
+            checkbox.classList.add('checked');
+        }
+
+        // Here you would typically update the task object's done property
+        // For example: project.tasks.find(t => t.id === taskId).done = !isDone;
+        console.log(`Task ${taskId} marked as ${!isDone ? 'done' : 'not done'}`);
     }
 
-    function displayContent(projectContainer){
-        elements.content.innerHTML='';
-    }
 
-    return {addTask,removeTask,editTask,displayContent};
+    return { addTask, removeTask, editTask, toggleTaskDone };
 }
