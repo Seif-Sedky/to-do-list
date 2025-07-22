@@ -53,6 +53,8 @@ function start() {
                 return tasks.filter((task) => task.isImportant());
             case 'done-tasks':
                 return tasks.filter((task) => task.isDone());
+            default:
+                return tasks;
         }
     }
 
