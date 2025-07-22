@@ -81,7 +81,7 @@ export function contentDisplayer() {
         const taskDelBtn = document.createElement('button');
         taskDelBtn.className = 'task-delete-btn';
         taskDelBtn.textContent = 'Delete';
-        taskDelBtn.addEventListener('click', () => deleteTask(task.id));
+        taskDelBtn.addEventListener('click', () => deleteTask(project,task.id));
 
         taskActions.appendChild(taskImportance);
         taskActions.appendChild(taskEditBtn);
