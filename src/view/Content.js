@@ -5,20 +5,21 @@ import { DoneZoElements } from "../utils/DOM";
 export function contentDisplayer() {
     let elements = new DoneZoElements();
 
+
     function displayTasks(tasks, clear = false) {
-        if (clear) { // remove all excpet first elemeent (add button)
+        if (clear) {
             let content = elements.content;
-            const contentElements = content.children;
+            const contentElements = Array.from(content.children); // Convert to static array
+
+            // Remove all except first element (add button) from end
             for (let i = 1; i < contentElements.length; i++) {
                 contentElements[i].remove();
             }
         }
 
         tasks.forEach(addTask);
-
     }
-
-    function addTask(task) {
+    function addTask(task, project) {
         let content = elements.content;
 
         // Create main task container
@@ -33,7 +34,7 @@ export function contentDisplayer() {
         // Create checkbox
         const taskCheckbox = document.createElement('div');
         taskCheckbox.className = `task-checkbox ${task.done ? 'checked' : ''}`;
-        taskCheckbox.addEventListener('click', () => toggleTaskDone(task.id));
+        taskCheckbox.addEventListener('click', () => toggleTaskDone(task.id, project));
 
         // Create task name
         const taskName = document.createElement('h3');
@@ -68,7 +69,8 @@ export function contentDisplayer() {
         taskActions.className = 'task-actions';
 
         const taskImportance = document.createElement('span');
-        taskImportance.className = `task-importance importance-${task.importance.toLowerCase()}`;
+        let importance = task.isImportant() ? 'high' : 'low';
+        taskImportance.className = `task-importance importance-${importance}`;
         taskImportance.textContent = task.importance;
 
         const taskEditBtn = document.createElement('button');
@@ -112,7 +114,7 @@ export function contentDisplayer() {
 
     }
 
-    function toggleTaskDone(taskId) {
+    function toggleTaskDone(taskId, project) {
         const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
         const checkbox = taskElement.querySelector('.task-checkbox');
 
@@ -127,9 +129,8 @@ export function contentDisplayer() {
             checkbox.classList.add('checked');
         }
 
-        // Here you would typically update the task object's done property
-        // For example: project.tasks.find(t => t.id === taskId).done = !isDone;
-        console.log(`Task ${taskId} marked as ${!isDone ? 'done' : 'not done'}`);
+        // update the task object's done property
+        project.tasks.find(task => task.id === taskId).done = !isDone;
     }
 
 

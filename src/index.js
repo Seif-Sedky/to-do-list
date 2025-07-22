@@ -28,7 +28,7 @@ function start() {
 
 
     elements.tasksFilters.addEventListener('click', (e) => {
-        if (!e.target.classList.contains('tasks-filter'))
+        if (!e.target.closest('tasks-filter'))//not a child
             return;
 
         let projectContainer = document.querySelector('.selected');
@@ -53,6 +53,9 @@ function start() {
                 return tasks.filter((task) => task.isImportant());
             case 'done-tasks':
                 return tasks.filter((task) => task.isDone());
+            case 'overdue-tasks':
+                return tasks.filter((task) => task.isOverDue());
+
             default:
                 return tasks;
         }
@@ -156,16 +159,16 @@ function start() {
             // Validate required fields
             if (taskName && taskDueDate) {
                 // Determine importance level
-                const importance = isImportant ? 'High' : 'Low';
+                const important = isImportant ? true : false;
 
                 // Create new Task object using the constructor
-                const newTask = new Task(taskName, taskDescription, taskDueDate, importance);
+                const newTask = new Task(taskName, taskDescription, taskDueDate, important);
 
                 // Add the task to the project's tasks array
                 project.tasks.push(newTask);
 
                 // Display the new task in the UI
-                contentDispl.addTask(newTask);
+                contentDispl.addTask(newTask,project);
 
                 // Close the modal by removing the overlay
                 objects.overlay.remove();
