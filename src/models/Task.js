@@ -7,26 +7,33 @@ export class Task {
         this.due = due;
         this.importance = importance;
         this.done = false;
+        const msPerDay = 1000 * 60 * 60 * 24;
     }
 
-    isOverDue() {
 
+    isOverDue(date) {
+        let today = new Date();
+        return date < today;
     }
 
-    isToday() {
-
-    }
-
-    isThisWeek() {
-
-    }
-
-    isImportant() {
+    isToday(date) {
+        let today = new Date();
+        return today === date;
 
     }
 
-    isDone() {
+    isThisWeek(date) {
+        let today = new Date();
 
+        return (date - today) <= (msPerDay * 7);
+    }
+
+    isImportant(date) {
+        return this.importance;
+    }
+
+    isDone(date) {
+        return this.done;
     }
 
 }
