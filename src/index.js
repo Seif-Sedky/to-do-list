@@ -28,15 +28,15 @@ function start() {
 
 
     elements.tasksFilters.addEventListener('click', (e) => {
-        if (!e.target.closest('tasks-filter'))//not a child
+        if (!e.target.closest('.tasks-filter'))//not a child
             return;
 
         let projectContainer = document.querySelector('.selected');
         if (!projectContainer)
             return;
-
+        let taskId = e.target.closest('.tasks-filter').id;
         let project = getProj(projectContainer.dataset.id);
-        let taskList = filterTaskList(e.target.id, project.tasks);
+        let taskList = filterTaskList(taskId, project.tasks);
         contentDispl.displayTasks(taskList, true);
     });
 
@@ -168,7 +168,7 @@ function start() {
                 project.tasks.push(newTask);
 
                 // Display the new task in the UI
-                contentDispl.addTask(newTask,project);
+                contentDispl.addTask(newTask, project);
 
                 // Close the modal by removing the overlay
                 objects.overlay.remove();

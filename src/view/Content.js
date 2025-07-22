@@ -71,7 +71,7 @@ export function contentDisplayer() {
         const taskImportance = document.createElement('span');
         let importance = task.isImportant() ? 'high' : 'low';
         taskImportance.className = `task-importance importance-${importance}`;
-        taskImportance.textContent = task.importance;
+        taskImportance.textContent = importance.charAt(0).toUpperCase()+importance.substring(1);;
 
         const taskEditBtn = document.createElement('button');
         taskEditBtn.className = 'task-edit-btn';
