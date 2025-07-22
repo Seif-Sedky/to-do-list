@@ -37,12 +37,23 @@ function start() {
 
         let project = getProj(projectContainer.dataset.id);
         let taskList = filterTaskList(e.target.id, project.tasks);
-        contentDispl.displayTasks(taskList,true);
+        contentDispl.displayTasks(taskList, true);
     });
 
 
-    function filterTaskList(taskId,tasks){
-
+    function filterTaskList(taskId, tasks) {
+        switch (taskId) {
+            case 'all-tasks':
+                return tasks;
+            case 'today-tasks':
+                return tasks.filter((task) => task.isToday());
+            case 'week-tasks':
+                return tasks.filter((task) => task.isThisWeek());
+            case 'important-tasks':
+                return tasks.filter((task) => task.isImportant());
+            case 'done-tasks':
+                return tasks.filter((task) => task.isDone());
+        }
     }
 
 
