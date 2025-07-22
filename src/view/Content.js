@@ -6,7 +6,7 @@ export function contentDisplayer() {
     let elements = new DoneZoElements();
 
 
-    function displayTasks(tasks, clear = false) {
+    function displayTasks(tasks, project, clear = false) {
         if (clear) {
             let content = elements.content;
             const contentElements = Array.from(content.children); // Convert to static array
@@ -17,7 +17,7 @@ export function contentDisplayer() {
             }
         }
 
-        tasks.forEach(addTask);
+        tasks.forEach(task => addTask(task, project));
     }
     function addTask(task, project) {
         let content = elements.content;
@@ -71,7 +71,7 @@ export function contentDisplayer() {
         const taskImportance = document.createElement('span');
         let importance = task.isImportant() ? 'high' : 'low';
         taskImportance.className = `task-importance importance-${importance}`;
-        taskImportance.textContent = importance.charAt(0).toUpperCase()+importance.substring(1);;
+        taskImportance.textContent = importance.charAt(0).toUpperCase() + importance.substring(1);;
 
         const taskEditBtn = document.createElement('button');
         taskEditBtn.className = 'task-edit-btn';

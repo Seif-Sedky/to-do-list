@@ -24,22 +24,23 @@ function start() {
         let input = objects.input;
         let overlay = objects.overlay;
         addSubmitEvent(objects, submitBtn, input, overlay);
+        addFilterEvent();
     });
 
+    function addFilterEvent() {
+        elements.tasksFilters.addEventListener('click', (e) => {
+            if (!e.target.closest('.tasks-filter'))//not a child
+                return;
 
-    elements.tasksFilters.addEventListener('click', (e) => {
-        if (!e.target.closest('.tasks-filter'))//not a child
-            return;
-
-        let projectContainer = document.querySelector('.selected');
-        if (!projectContainer)
-            return;
-        let taskId = e.target.closest('.tasks-filter').id;
-        let project = getProj(projectContainer.dataset.id);
-        let taskList = filterTaskList(taskId, project.tasks);
-        contentDispl.displayTasks(taskList, true);
-    });
-
+            let projectContainer = document.querySelector('.selected');
+            if (!projectContainer)
+                return;
+            let taskId = e.target.closest('.tasks-filter').id;
+            let project = getProj(projectContainer.dataset.id);
+            let taskList = filterTaskList(taskId, project.tasks);
+            contentDispl.displayTasks(taskList, project, true);
+        });
+    }
 
     function filterTaskList(taskId, tasks) {
         switch (taskId) {
@@ -60,9 +61,6 @@ function start() {
                 return tasks;
         }
     }
-
-
-
 
     function addSubmitEvent(objects, submitBtn, input, overlay) {
 
@@ -142,7 +140,7 @@ function start() {
         // Display all tasks in the project
         if (project && project.tasks && project.tasks.length > 0) {
             project.tasks.forEach(task => {
-                contentDispl.addTask(task);
+                contentDispl.addTask(task, project);
             });
         }
 
@@ -167,8 +165,8 @@ function start() {
                 // Add the task to the project's tasks array
                 project.tasks.push(newTask);
 
-                // Display the new task in the UI
-                contentDispl.addTask(newTask, project);
+                // Display all tasks again to adjust for adding while applying a filter 
+                contentDispl.displayTasks(project.tasks, project, true);
 
                 // Close the modal by removing the overlay
                 objects.overlay.remove();
