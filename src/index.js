@@ -2,6 +2,7 @@ import './style.css';
 import { contentDisplayer } from './view/Content';
 import './view/sidebar.css';
 import './view/content.css';
+import cozyImg from './imgs/cozy-anime.png';
 
 import { createProjectPopup, createTaskPopup } from './view/Popup.js';
 import { DoneZoElements } from './utils/DOM.js';
@@ -33,8 +34,9 @@ function start() {
                 return;
 
             let projectContainer = document.querySelector('.selected');
-            if (!projectContainer)
+            if (!projectContainer) {
                 return;
+            }
             let taskId = e.target.closest('.tasks-filter').id;
             let project = getProj(projectContainer.dataset.id);
             let taskList = filterTaskList(taskId, project.tasks);
@@ -176,6 +178,7 @@ function start() {
 
     function deleteProject(deleteBtn) {
 
+
         //delete from array
         for (let i = 0; i < projects.length; i++) {
             if (projects[i].id === deleteBtn.parentElement.dataset.id) {
@@ -195,6 +198,15 @@ function start() {
 
         //delete from front end
         sidebarDispl.removeProject(deleteBtn.parentElement.dataset.id);
+
+        if (!document.querySelector('selected')) {
+            //no project is selected so return image 
+            //nothing is selected so return image
+            let img = document.createElement("img");
+            img.setAttribute('src', cozyImg);
+            img.classList.add('cozy-img');
+            elements.content.appendChild(img);
+        }
     }
 }
 

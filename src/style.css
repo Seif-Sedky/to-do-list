@@ -198,7 +198,7 @@ p {
 }
 
 
-#content{
+#content {
     margin-left: 300px;
     margin-right: 50px;
 }
@@ -242,3 +242,11 @@ p {
 .project-delete:hover {
     color: #e74c3c;
 }
+
+.cozy-img {
+    margin-left: 400px;
+    margin-top: 120px;
+    width: 40vw;
+    height: 75vh;
+}
+
