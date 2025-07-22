@@ -46,7 +46,7 @@ export function createProjectPopup() {
 }
 
 
-export function createTaskPopup() {
+export function createTaskPopup(action) {
     const overlay = document.createElement('div');
     overlay.classList.add('donezo-overlay');
 
@@ -54,7 +54,7 @@ export function createTaskPopup() {
     modal.classList.add('donezo-modal');
 
     const title = document.createElement('h2');
-    title.textContent = 'Add Task';
+    title.textContent = `${action} Task`;
     title.classList.add('modal-title');
 
     const nameInput = document.createElement('input');

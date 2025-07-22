@@ -131,7 +131,7 @@ function start() {
         addButton.className = 'add-task-btn';
         addButton.textContent = '+';
         addButton.addEventListener('click', () => {
-            addTaskEvent(createTaskPopup(), project);//create task popup will return the objects of the popup
+            addTaskEvent(createTaskPopup('Add'), project);//create task popup will return the objects of the popup
         });
         content.appendChild(addButton);
 

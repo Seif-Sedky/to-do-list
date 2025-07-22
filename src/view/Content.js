@@ -1,5 +1,6 @@
 import { Task } from "../models/Task";
 import { DoneZoElements } from "../utils/DOM";
+import { createTaskPopup } from './Popup.js';
 
 
 export function contentDisplayer() {
@@ -76,12 +77,12 @@ export function contentDisplayer() {
         const taskEditBtn = document.createElement('button');
         taskEditBtn.className = 'task-edit-btn';
         taskEditBtn.textContent = 'Edit';
-        taskEditBtn.addEventListener('click', () => editTask(task.id));
+        taskEditBtn.addEventListener('click', () => editTask(project, task.id));
 
         const taskDelBtn = document.createElement('button');
         taskDelBtn.className = 'task-delete-btn';
         taskDelBtn.textContent = 'Delete';
-        taskDelBtn.addEventListener('click', () => deleteTask(project,task.id));
+        taskDelBtn.addEventListener('click', () => deleteTask(project, task.id));
 
         taskActions.appendChild(taskImportance);
         taskActions.appendChild(taskEditBtn);
@@ -110,8 +111,79 @@ export function contentDisplayer() {
         }
     }
 
-    function editTask(id) {
 
+    function editTask(project, id) {
+        let objects = createTaskPopup('Edit');
+
+        objects.submitBtn.addEventListener('click', (e) => {
+            // Extract and validate data first
+            const taskData = getTaskDataFromForm(objects);
+
+            // Validate data
+            if (!validateTaskData(taskData)) {
+                return; // Stop execution if validation fails
+            }
+
+            // Update both display and object only if validation passes
+            editTaskDisplay(taskData, id);
+            editTaskObject(project, id, taskData);
+
+            objects.overlay.remove();
+        });
+    }
+
+    function getTaskDataFromForm(objects) {
+        return {
+            name: objects.nameInput.value.trim(),
+            description: objects.descInput.value.trim(),
+            dueDate: objects.dateInput.value,
+            isImportant: objects.checkboxContainer.querySelector('.modal-checkbox').checked
+        };
+    }
+
+    function validateTaskData(taskData) {
+        return taskData.name && taskData.dueDate;
+    }
+
+    function editTaskDisplay(taskData, id) {
+        const taskElement = document.querySelector(`[data-task-id="${id}"]`);
+
+        if (!taskElement) {
+            console.error(`Task element with id ${id} not found`);
+            return;
+        }
+
+        // Update task name
+        const taskNameElement = taskElement.querySelector('.task-name');
+        taskNameElement.textContent = taskData.name;
+
+        // Update task description
+        const taskDescElement = taskElement.querySelector('.task-description');
+        taskDescElement.textContent = taskData.description;
+
+        // Update due date
+        const taskDueDateElement = taskElement.querySelector('.task-due-date');
+        taskDueDateElement.textContent = `📅 Due: ${new Date(taskData.dueDate).toLocaleDateString()}`;
+
+        // Update importance
+        const taskImportanceElement = taskElement.querySelector('.task-importance');
+        const importance = taskData.isImportant ? 'high' : 'low';
+        taskImportanceElement.className = `task-importance importance-${importance}`;
+        taskImportanceElement.textContent = importance.charAt(0).toUpperCase() + importance.substring(1);
+    }
+
+    function editTaskObject(project, id, taskData) {
+        let task = project.tasks.find(task => task.id === id);
+
+        if (!task) {
+            console.error(`Task with id ${id} not found in project`);
+            return;
+        }
+
+        task.name = taskData.name;
+        task.description = taskData.description;
+        task.due = taskData.dueDate;
+        task.importance = taskData.isImportant;
     }
 
     function toggleTaskDone(taskId, project) {
