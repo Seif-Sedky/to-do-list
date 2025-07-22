@@ -30,8 +30,9 @@
     padding: 16px;
     margin-top: 20px;
     margin-bottom: 12px;
+    background: linear-gradient(135deg, #ffeff9, #ffffff );
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #e5e7eb;
+    border-left: 4px solid #ffc1e7;
     transition: all 0.3s ease;
     position: relative;
 }
