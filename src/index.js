@@ -26,6 +26,28 @@ function start() {
         addSubmitEvent(objects, submitBtn, input, overlay);
     });
 
+
+    elements.tasksFilters.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('tasks-filter'))
+            return;
+
+        let projectContainer = document.querySelector('.selected');
+        if (!projectContainer)
+            return;
+
+        let project = getProj(projectContainer.dataset.id);
+        let taskList = filterTaskList(e.target.id, project.tasks);
+        contentDispl.displayTasks(taskList,true);
+    });
+
+
+    function filterTaskList(taskId,tasks){
+
+    }
+
+
+
+
     function addSubmitEvent(objects, submitBtn, input, overlay) {
 
 

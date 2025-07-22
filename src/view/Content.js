@@ -5,6 +5,19 @@ import { DoneZoElements } from "../utils/DOM";
 export function contentDisplayer() {
     let elements = new DoneZoElements();
 
+    function displayTasks(tasks, clear = false) {
+        if (clear) { // remove all excpet first elemeent (add button)
+            let content = elements.content;
+            const contentElements = content.children;
+            for (let i = 1; i < contentElements.length; i++) {
+                contentElements[i].remove();
+            }
+        }
+
+        tasks.forEach(addTask);
+
+    }
+
     function addTask(task) {
         let content = elements.content;
 
@@ -127,5 +140,5 @@ export function contentDisplayer() {
     }
 
 
-    return { addTask, deleteTask, deleteTasks, editTask, toggleTaskDone };
+    return { addTask, displayTasks, deleteTask, deleteTasks, editTask, toggleTaskDone };
 }
